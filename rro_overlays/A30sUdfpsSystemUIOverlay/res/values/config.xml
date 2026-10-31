@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Under-display fingerprint on the A30s (720x1560, density 280 = 1.75x).
+  The sensor is sensor_location 360|1350|119: a 238 px circle.
+-->
+<resources>
+    <!-- The ET715 needs green light (its device tree sets etspi-rb 00FF00); with
+         white illumination every frame is rejected (BAD_QUALITY 39). -->
+    <color name="config_udfpsColor">#00ff50</color>
+
+    <!-- pixel_pitch defaults to -1, which makes the lock-screen fingerprint icon
+         size 6000 / -1 = -6000 px and draws a black circle with a white band.
+         6000 / 59.4 = 101 px, an icon inside the 238 px sensor. -->
+    <item name="pixel_pitch" format="float" type="dimen">59.4</item>
+</resources>

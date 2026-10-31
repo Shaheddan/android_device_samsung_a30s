@@ -1,8 +1,13 @@
 # Bluetooth
 bluetooth.device.default_name=Galaxy A30s
 
-# Fingerprint
-ro.vendor.fingerprint.force_calibrate=true
+# Fingerprint: Egis ET715 optical sensor under the display.
+# sensor_location: x|y|radius on the 720x1560 panel, checked against stock
+# (360|1237|119 sits too high).
+# force_calibrate=false: the HAL calibrates by itself when the calibration data
+# in /data/vendor/biometrics/meta is missing; forcing it on every enroll holds
+# back the finger touches and enrollment then times out.
 ro.vendor.fingerprint.type=udfps_optical
-ro.vendor.fingerprint.sensor_location=360|1237|119
+ro.vendor.fingerprint.sensor_location=360|1350|119
+ro.vendor.fingerprint.force_calibrate=false
 ro.vendor.fingerprint.request_touch_event=true

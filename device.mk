@@ -25,6 +25,12 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.fingerprint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.fingerprint.xml
 
+# Under-display fingerprint: illumination colour and icon size (SystemUI), and
+# the size of the enrollment target (Settings)
+PRODUCT_PACKAGES += \
+    A30sUdfpsSystemUIOverlay \
+    A30sUdfpsSettingsOverlay
+
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay-lineage

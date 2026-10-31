@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Fingerprint enrollment screen on the A30s. The sensor is a 238 px circle
+  (sensor_location 360|1350|119) on a 720 px wide panel.
+-->
+<resources>
+    <!-- Progress ring radius in px around the sensor. The default, 280, makes the
+         press target 238 + 2 x 280 = 798 px, wider than the screen. -->
+    <integer name="config_udfpsEnrollProgressBar">29</integer>
+    <!-- Ring size: 68dp x 1.75 = 119 px, the sensor radius. -->
+    <dimen name="fingerprint_progress_bar_max_size">68dp</dimen>
+    <dimen name="fingerprint_progress_bar_min_size">34dp</dimen>
+</resources>
