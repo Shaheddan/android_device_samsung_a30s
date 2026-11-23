@@ -1,0 +1,15 @@
+# vaultkeeperd (and its HAL, same domain): keys under /efs/vk, the TEE, its socket
+type vaultkeeper_efs_file, file_type;
+allow vaultkeeperd efs_file:dir create_dir_perms;
+type_transition vaultkeeperd efs_file:dir vaultkeeper_efs_file "vk";
+allow vaultkeeperd vaultkeeper_efs_file:dir create_dir_perms;
+allow vaultkeeperd vaultkeeper_efs_file:file create_file_perms;
+r_dir_file(vaultkeeperd, tee_vendor_data_file)
+
+allow rild vaultkeeperd:unix_stream_socket connectto;
+allow cass vaultkeeperd:unix_stream_socket connectto;
+binder_call(system_server, vaultkeeperd)
+binder_call(rild, vaultkeeperd)
+
+# It waits for hwservicemanager.ready before registering the HAL
+get_prop(vaultkeeperd, hwservicemanager_prop)
