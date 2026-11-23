@@ -1,0 +1,8 @@
+# cass answers the modem on /dev/umts_cass. The base domain comes from
+# device/samsung_slsi/sepolicy; these are the extras the stock policy gives it.
+vendor_internal_prop(vendor_sec_cass_prop)
+set_prop(cass, vendor_sec_cass_prop)
+
+allow cass rild:unix_stream_socket connectto;
+allow cass kmsg_device:chr_file w_file_perms;
+allow cass self:capability { setgid setuid };
