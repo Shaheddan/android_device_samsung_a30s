@@ -1,0 +1,6 @@
+type hal_vaultkeeper_server_hwservice, hwservice_manager_type;
+
+hwbinder_use(vaultkeeperd)
+allow vaultkeeperd hal_vaultkeeper_server_hwservice:hwservice_manager { add find };
+allow rild hal_vaultkeeper_server_hwservice:hwservice_manager find;
+allow cass hal_vaultkeeper_server_hwservice:hwservice_manager find;

@@ -31,6 +31,26 @@ PRODUCT_PACKAGES += \
     A30sUdfpsSystemUIOverlay \
     A30sUdfpsSettingsOverlay
 
+# RIL: the modem keeps asking the CASS daemon for replies on /dev/umts_cass (cass
+# answers through VaultKeeper in the TEE). With nobody answering, the A30s modem
+# restarts itself about every 30 s and the SIM drops out. Blobs from the stock
+# A307FNXXS4CWH1 firmware.
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/prebuilts/vendor/bin/cass:$(TARGET_COPY_OUT_VENDOR)/bin/cass \
+    $(LOCAL_PATH)/prebuilts/vendor/bin/vaultkeeperd:$(TARGET_COPY_OUT_VENDOR)/bin/vaultkeeperd \
+    $(LOCAL_PATH)/prebuilts/vendor/bin/vendor.samsung.hardware.security.vaultkeeper@2.0-service:$(TARGET_COPY_OUT_VENDOR)/bin/vendor.samsung.hardware.security.vaultkeeper@2.0-service \
+    $(LOCAL_PATH)/prebuilts/vendor/etc/init/cass.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/cass.rc \
+    $(LOCAL_PATH)/prebuilts/vendor/etc/init/vaultkeeper_common.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vaultkeeper_common.rc \
+    $(LOCAL_PATH)/prebuilts/vendor/lib64/libdsms_vendor.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libdsms_vendor.so \
+    $(LOCAL_PATH)/prebuilts/vendor/lib64/libvkservice.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libvkservice.so \
+    $(LOCAL_PATH)/prebuilts/vendor/lib64/vendor.samsung.frameworks.security.dsms@1.0.so:$(TARGET_COPY_OUT_VENDOR)/lib64/vendor.samsung.frameworks.security.dsms@1.0.so \
+    $(LOCAL_PATH)/prebuilts/vendor/lib64/vendor.samsung.hardware.security.vaultkeeper@2.0.so:$(TARGET_COPY_OUT_VENDOR)/lib64/vendor.samsung.hardware.security.vaultkeeper@2.0.so
+
+# RIL: hand rild the SEH radio response functions (needs the common
+# hardware/samsung patch for rilds without ISehRadio 2.2)
+PRODUCT_PACKAGES += \
+    sehradiomanager
+
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay-lineage
