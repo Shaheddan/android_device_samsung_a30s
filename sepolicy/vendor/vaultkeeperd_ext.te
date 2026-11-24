@@ -13,3 +13,6 @@ binder_call(rild, vaultkeeperd)
 
 # It waits for hwservicemanager.ready before registering the HAL
 get_prop(vaultkeeperd, hwservicemanager_prop)
+
+# It checks ro.factory.factory_binary at every start
+get_prop(vaultkeeperd, vendor_factory_prop)
