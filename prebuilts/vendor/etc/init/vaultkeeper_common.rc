@@ -16,3 +16,9 @@ on late-fs
     mkdir /dev/socket/vaultkeeper 0770 system system
     start vaultkeeper
     start vaultkeeper_hal
+
+on init
+    # Stock init.exynos7904.rc makes this link: vaultkeeperd reads its vault from
+    # /dev/block/steady, and without it VaultKeeper never comes up, so cass never answers
+    # the modem and the modem keeps restarting.
+    symlink /dev/block/platform/13500000.dwmmc0/by-name/steady /dev/block/steady
